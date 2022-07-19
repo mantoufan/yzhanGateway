@@ -1,0 +1,37 @@
+{
+  "name": "mantoufan/yzhangateway",
+  "type": "library",
+  "description": "Developing PHP SDK for any API. 为任何 API 快速开发 PHP SDK.",
+  "keywords": [
+    "Baidu Cloud",
+    "Cloudflare",
+    "SDK",
+    "API Gateway",
+    "CDN",
+    "Purge Cache"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shon Wu",
+      "email": "mhjlw@126.com",
+      "homepage": "https://github.com/mantoufan"
+    }
+  ],
+  "scripts": {
+    "test": "phpunit",
+    "coverage": "phpunit --coverage-clover clover.xml"
+  },
+  "require": {
+    "php": ">=5.4",
+    "vlucas/phpdotenv": "^5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "YZhanGateway\\": "src/"
+    }
+  }
+}
