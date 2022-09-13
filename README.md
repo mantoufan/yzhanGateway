@@ -61,3 +61,15 @@ $res = $yzhanGateway->request(array(
   )
 ));
 ```
+##### Github
+Get user's recent activities.
+```php
+$yzhanGateway = new YZhanGateway('Github', array(
+  'accessToken' => $_ENV['GITHUB_ACCESS_TOKEN'],
+  'userAgent' => $_ENV['GITHUB_USER_NAME']
+));
+$res = $yzhanGateway->request(array(
+  'method' => 'GET',
+  'url' => 'https://api.github.com/users/' . $_ENV['GITHUB_USER_NAME'] . '/events'
+));
+```

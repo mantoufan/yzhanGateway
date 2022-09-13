@@ -5,11 +5,11 @@ class ClientTool {
     $ch = curl_init();
     curl_setopt_array($ch, array(
       CURLOPT_URL => $params['url'],
-      CURLOPT_CUSTOMREQUEST => $params['customRequest'],
+      CURLOPT_CUSTOMREQUEST => $params['method'],
       CURLOPT_HTTPHEADER => array_map(function($v, $k) {
         return $k . ':' . $v;
       }, array_values($params['httpHeaders']), array_keys($params['httpHeaders'])),
-      CURLOPT_POST => $params['customRequest'] === 'POST',
+      CURLOPT_POST => $params['method'] === 'POST',
       CURLOPT_POSTFIELDS => $params['postFields'],
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_TIMEOUT => 6,
