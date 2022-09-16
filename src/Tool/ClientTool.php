@@ -8,7 +8,7 @@ class ClientTool {
       CURLOPT_CUSTOMREQUEST => $params['method'],
       CURLOPT_HTTPHEADER => array_map(function($v, $k) {
         return $k . ':' . $v;
-      }, array_values($params['httpHeaders']), array_keys($params['httpHeaders'])),
+      }, array_values((array)$params['httpHeaders']), array_keys((array)$params['httpHeaders'])),
       CURLOPT_POST => $params['method'] === 'POST',
       CURLOPT_POSTFIELDS => $params['postFields'],
       CURLOPT_RETURNTRANSFER => true,

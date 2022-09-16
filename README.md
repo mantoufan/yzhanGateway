@@ -30,6 +30,26 @@ Provides the `Request` static method for making requests and responses
 if necessary, create a new `env.testing` to store variables needed for testing  
 ![.env.testing example](https://s2.loli.net/2022/09/10/1e7GxSlquyTPdRX.jpg)
 #### Example
+##### Common
+```php
+$yzhanGateway = new YZhanGateway('Common');
+$res = $yzhanGateway->request(array(
+  'method' => 'GET',
+  'url' => 'https://animechan.vercel.app/api/random'
+));
+```
+##### Use Cache
+Cache Results for 86400 seconds
+```php
+$yzhanGateway = new YZhanGateway('Common');
+$res = $yzhanGateway->cache()->request(array(
+  'method' => 'GET',
+  'url' => 'https://animechan.vercel.app/api/random',
+  'cache' => array(
+    'maxAge' => 86400
+  ) 
+));
+```
 ##### BaiduCloud
 Purge Files by urls in Biadu Cloud CDN.  
 ```php
