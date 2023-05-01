@@ -6,11 +6,11 @@ class ClientTool {
     curl_setopt_array($ch, array(
       CURLOPT_URL => $params['url'],
       CURLOPT_CUSTOMREQUEST => $params['method'],
-      CURLOPT_HTTPHEADER => array_map(function($v, $k) {
+      CURLOPT_HTTPHEADER => empty($params['httpHeaders']) ? array() : array_map(function($v, $k) {
         return $k . ':' . $v;
       }, array_values((array)$params['httpHeaders']), array_keys((array)$params['httpHeaders'])),
       CURLOPT_POST => $params['method'] === 'POST',
-      CURLOPT_POSTFIELDS => $params['postFields'],
+      CURLOPT_POSTFIELDS => empty($params['postFields']) ? null : $params['postFields'],
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_TIMEOUT => 6,
       CURLOPT_SSL_VERIFYHOST => false,

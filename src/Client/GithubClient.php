@@ -14,7 +14,7 @@ class GithubClient {
       'accept' => 'application/vnd.github+json',
       'authorization' => 'Bearer ' . $this->accessToken,
       'content-type' => 'application/json'
-    ), (array) $params['httpHeaders']);
+    ), empty($params['httpHeaders']) ? array() : $params['httpHeaders']);
     //$params['postFields'] = json_encode($params['postFields'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     return array(null, ClientTool::Request($params));
   }

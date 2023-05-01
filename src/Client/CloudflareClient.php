@@ -10,7 +10,7 @@ class CloudflareClient {
     $params['httpHeaders'] = array_merge(array(
       'authorization' => 'Bearer ' . $this->apiToken,
       'content-type' => 'application/json'
-    ), (array) $params['httpHeaders']);
+    ), empty($params['httpHeaders']) ? array() : $params['httpHeaders']);
     $params['postFields'] = json_encode($params['postFields'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     return array(null, ClientTool::Request($params));
   }

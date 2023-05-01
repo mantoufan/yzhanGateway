@@ -24,7 +24,7 @@ class BaiduCloudClient {
       'host' => $host,
       'authorization' => $authorization,
       'content-type' => 'application/json'
-    ), (array) $params['httpHeaders']);
+    ), empty($params['httpHeaders']) ? array() : $params['httpHeaders']);
     $params['postFields'] = json_encode($params['postFields'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     return array(null, ClientTool::Request($params));
   }
