@@ -26,8 +26,8 @@ If necessary, create a new `.php` here to declare a new error type
 Provides the `Request` static method for making requests and responses  
 ### {root}/tests
 #### {root}/.env.testing
-如需要，新建 `.env.testing` 存放测试需要的变量  
-if necessary, create a new `env.testing` to store variables needed for testing  
+运行 `composer test` 前，请将`.env.testing.template`重命名为`.env.testing`存放测试需要的变量  
+Before running `composer test`, rename `.env.testing.template` to `env.testing` to store variables needed for testing  
 ![.env.testing example](https://s2.loli.net/2022/09/10/1e7GxSlquyTPdRX.jpg)
 #### Example
 ##### Common
