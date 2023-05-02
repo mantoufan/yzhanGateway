@@ -93,3 +93,20 @@ $res = $yzhanGateway->request(array(
   'url' => 'https://api.github.com/users/' . $_ENV['GITHUB_USER_NAME'] . '/events'
 ));
 ```
+##### OpenAI
+Chat using text-davinci
+```php
+$yzhanGateway = new YZhanGateway('OpenAI', array(
+  'apiKey' => $_ENV['OPENAI_APIKEY'],
+  // 'organization' => $_ENV['OPENAI_ORGANIZATION'] // Optional
+));
+$res = $yzhanGateway->request(array(
+  'method' => 'POST',
+  'url' => 'https://api.openai.com/v1/completions',
+  'postFields' => array(
+    'model' => 'text-davinci-003',
+    'prompt' => 'Hello',
+    'temperature'=> 0 // Optional, 0 means the most certain results
+  )
+));
+```
