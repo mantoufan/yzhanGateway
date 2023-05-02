@@ -12,7 +12,7 @@ class BaiduCloudClient {
     ['host' => $host, 'path' => $uri] = parse_url($params['url']);
     $this->auth->setMethod($params['method']);
     $this->auth->setUri($uri);
-    $this->auth->setSignHeaders(array(
+    $this->auth->setSignedHeaders(array(
       'host'=> $host
     ));
     try {

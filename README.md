@@ -29,8 +29,8 @@ Provides the `Request` static method for making requests and responses
 运行 `composer test` 前，请将`.env.testing.template`重命名为`.env.testing`存放测试需要的变量  
 Before running `composer test`, rename `.env.testing.template` to `env.testing` to store variables needed for testing  
 ![.env.testing example](https://s2.loli.net/2022/09/10/1e7GxSlquyTPdRX.jpg)
-#### Example
-##### Common
+## Example 示例
+### Common 通用
 ```php
 $yzhanGateway = new YZhanGateway('Common');
 $res = $yzhanGateway->request(array(
@@ -38,7 +38,7 @@ $res = $yzhanGateway->request(array(
   'url' => 'https://animechan.vercel.app/api/random'
 ));
 ```
-##### Use Cache
+### Use Cache 使用缓存
 Cache Results for 86400 seconds
 ```php
 $yzhanGateway = new YZhanGateway('Common');
@@ -50,7 +50,7 @@ $res = $yzhanGateway->cache()->request(array(
   ) 
 ));
 ```
-##### BaiduCloud
+### BaiduCloud 百度智能云
 Purge Files by urls in Biadu Cloud CDN.  
 ```php
 $yzhanGateway = new YZhanGateway('BaiduCloud', array(
@@ -67,7 +67,7 @@ $res = $yzhanGateway->request(array(
   )
 ));
 ```
-##### Cloudflare
+### Cloudflare
 Purge Files by urls (<= 30) in Cloudflare.  
 ```php
 $yzhanGateway = new YZhanGateway('Cloudflare', array(
@@ -81,7 +81,7 @@ $res = $yzhanGateway->request(array(
   )
 ));
 ```
-##### Github
+### Github
 Get user's recent activities.
 ```php
 $yzhanGateway = new YZhanGateway('Github', array(
@@ -93,7 +93,7 @@ $res = $yzhanGateway->request(array(
   'url' => 'https://api.github.com/users/' . $_ENV['GITHUB_USER_NAME'] . '/events'
 ));
 ```
-##### OpenAI
+### OpenAI
 Chat using text-davinci
 ```php
 $yzhanGateway = new YZhanGateway('OpenAI', array(
@@ -107,6 +107,27 @@ $res = $yzhanGateway->request(array(
     'model' => 'text-davinci-003',
     'prompt' => 'Hello',
     'temperature'=> 0 // Optional, 0 means the most certain results
+  )
+));
+```
+### TencentCloud 腾讯云
+Get CVM list
+```php
+$yzhanGateway = new YZhanGateway('TencentCloud', array(
+  'secretId' => $_ENV['TENCENTCLOUD_SECRET_ID'],
+  'secretKey' => $_ENV['TENCENTCLOUD_SECRET_KEY']
+));
+$res = $yzhanGateway->request(array(
+  'method' => 'POST',
+  'url' => 'https://cvm.tencentcloudapi.com',
+  'action' => 'DescribeInstances',
+  'version' => '2017-03-12',
+  'region' => 'ap-guangzhou',
+  'postFields' => array(
+    'Limit' => 1,
+    'Filters' => array(
+      array('Values' => array('未命名'), 'Name' => 'instance-name')
+    ),
   )
 ));
 ```

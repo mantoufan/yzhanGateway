@@ -54,7 +54,7 @@ class BaiduCloudAuth {
       $this->params = $this->normalizeParam($params);
   }
 
-  public function setSignHeaders($headers)
+  public function setSignedHeaders($headers)
   {
       $this->headers = $this->normalizeHeaders($headers);
   }
