@@ -25,10 +25,10 @@ If necessary, create a new `.php` here to declare a new error type
 提供 `Request` 静态方法，发出请求和响应  
 Provides the `Request` static method for making requests and responses  
 ### {root}/tests
-#### {root}/.env.testing
-运行 `composer test` 前，请将`.env.testing.template`重命名为`.env.testing`存放测试需要的变量  
-Before running `composer test`, rename `.env.testing.template` to `env.testing` to store variables needed for testing  
-![.env.testing example](https://s2.loli.net/2022/09/10/1e7GxSlquyTPdRX.jpg)
+#### {root}/.env.test
+运行 `composer test` 前，请将`.env.test.template`重命名为`.env.test`存放测试需要的变量  
+Before running `composer test`, rename `.env.test.template` to `env.test` to store variables needed for testing  
+![.env.test example](https://s2.loli.net/2022/09/10/1e7GxSlquyTPdRX.jpg)
 ## Example 示例
 ### Common 通用
 ```php

@@ -1,4 +1,4 @@
 vendor
 .phpunit.result.cache
 composer.lock
-.env.testing
+.env.test
