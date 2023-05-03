@@ -39,12 +39,14 @@ class TencentCloudAuth {
 
   function setSignedHeaders(array $signHeaders) {
     ksort($signHeaders);
+    $headers = '';
     $signedHeaders = array();
     foreach($signHeaders as $key => $val) {
       $key = strtolower($key);
-      $this->headers .= $key . ':' . strtolower($val) . "\n";
+      $headers .= $key . ':' . strtolower($val) . "\n";
       $signedHeaders []= $key;
     }
+    $this->headers = $headers;
     $this->signedHeaders = implode(';', $signedHeaders);
   }
 
