@@ -1,36 +1,56 @@
 # yzhanGateway
+
 Developing PHP SDK for any API.  
-为任何 API 快速开发 PHP SDK.  
-## Install 安装  
+为任何 API 快速开发 PHP SDK.
+
+## Install 安装
+
 ```shell
 composer require mantoufan/yzhangateway
 ```
+
 ## Usage 使用
+
 ### {root}/src
+
 #### Client
-1. Create a `{client name}.php` in `src\Client` Directory  
+
+1. Create a `{client name}.php` in `src\Client` Directory
 1. 在 `src\Client` 目录新建一个 `{客户端名称}.php`
-2. Implement `request` method
-2. 实现请求 `request` 方法
+1. Implement `request` method
+1. 实现请求 `request` 方法
+
 #### Auth
+
 如需要，新建 `.php` 提供鉴权类  
-例如包含获取 `authorization` 请求头的方法    
+例如包含获取 `authorization` 请求头的方法  
 If necessary, create a new `.php` to provide an authentication class,  
-such as a method to obtain the `authorization` request header  
+such as a method to obtain the `authorization` request header
+
 #### Exception
+
 如需要，新建 `.php` 声明新错误类型  
-If necessary, create a new `.php` here to declare a new error type  
+If necessary, create a new `.php` here to declare a new error type
+
 #### Tool
+
 ##### ClientTool
+
 提供 `Request` 静态方法，发出请求和响应  
-Provides the `Request` static method for making requests and responses  
+Provides the `Request` static method for making requests and responses
+
 ### {root}/tests
+
 #### {root}/.env.test
+
 运行 `composer test` 前，请将`.env.test.template`重命名为`.env.test`存放测试需要的变量  
 Before running `composer test`, rename `.env.test.template` to `env.test` to store variables needed for testing  
 ![.env.test example](https://s2.loli.net/2022/09/10/1e7GxSlquyTPdRX.jpg)
+
 ## Example 示例
+
 ### Common 通用
+
 ```php
 $yzhanGateway = new YZhanGateway('Common');
 $res = $yzhanGateway->request(array(
@@ -38,8 +58,11 @@ $res = $yzhanGateway->request(array(
   'url' => 'https://animechan.vercel.app/api/random'
 ));
 ```
+
 ### Use Cache 使用缓存
+
 Cache Results for 86400 seconds
+
 ```php
 $yzhanGateway = new YZhanGateway('Common');
 $res = $yzhanGateway->cache()->request(array(
@@ -47,11 +70,33 @@ $res = $yzhanGateway->cache()->request(array(
   'url' => 'https://animechan.vercel.app/api/random',
   'cache' => array(
     'maxAge' => 86400
-  ) 
+  )
 ));
 ```
+
+### Clear Cache 清理缓存
+
+Cache Results for 86400 seconds
+
+```php
+$yzhanGateway = new YZhanGateway('Common');
+$params = array(
+  'method' => 'GET',
+  'url' => 'https://animechan.vercel.app/api/random',
+  'cache' => array(
+    'maxAge' => 86400
+  )
+);
+$res = $yzhanGateway->cache()->request($params);
+if ($res === null) { // If results is bad, using getCache to get the yzhanCache instance
+  $yzhanGateway->getCache()->delete($yzhanGateway->getKey($params)); // Delete, set by the key
+}
+```
+
 ### BaiduCloud 百度智能云
-Purge Files by urls in Biadu Cloud CDN.  
+
+Purge Files by urls in Biadu Cloud CDN.
+
 ```php
 $yzhanGateway = new YZhanGateway('BaiduCloud', array(
   'accessKey' => $_ENV['BAIDUCLOUD_ACCESSKEY'],
@@ -67,8 +112,11 @@ $res = $yzhanGateway->request(array(
   )
 ));
 ```
+
 ### Cloudflare
-Purge Files by urls (<= 30) in Cloudflare.  
+
+Purge Files by urls (<= 30) in Cloudflare.
+
 ```php
 $yzhanGateway = new YZhanGateway('Cloudflare', array(
   'apiToken' => $_ENV['CLOUDFLARE_APITOKEN']
@@ -81,8 +129,11 @@ $res = $yzhanGateway->request(array(
   )
 ));
 ```
+
 ### Github
+
 Get user's recent activities.
+
 ```php
 $yzhanGateway = new YZhanGateway('Github', array(
   'accessToken' => $_ENV['GITHUB_ACCESS_TOKEN'],
@@ -93,8 +144,11 @@ $res = $yzhanGateway->request(array(
   'url' => 'https://api.github.com/users/' . $_ENV['GITHUB_USER_NAME'] . '/events'
 ));
 ```
+
 ### OpenAI
+
 Chat using text-davinci
+
 ```php
 $yzhanGateway = new YZhanGateway('OpenAI', array(
   'apiKey' => $_ENV['OPENAI_APIKEY'],
@@ -110,8 +164,11 @@ $res = $yzhanGateway->request(array(
   )
 ));
 ```
+
 ### TencentCloud 腾讯云
+
 Get CVM list
+
 ```php
 $yzhanGateway = new YZhanGateway('TencentCloud', array(
   'secretId' => $_ENV['TENCENTCLOUD_SECRET_ID'],
